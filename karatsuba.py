@@ -1,7 +1,6 @@
 """
 Karatsuba Multiplication
 """
-
 def karatsuba(x,y):
 
 	n1 = len(str(x))
@@ -11,19 +10,17 @@ def karatsuba(x,y):
 		return x * y
 
 	n = max(n1,n2)
-
 	div = int(n/2)
 	
-
 	a = (x / (10 ** div))
 	c = (y / (10 ** div))
 	b = (x % (10 ** div))
 	d = (y % (10 ** div))
 
-	return ((karatsuba(a,c) * (10 ** n)) + ((10 ** div) * (karatsuba(a+b,c+d) -ac -bd )) + karatsuba(b,d) 
+	return ((karatsuba(a,c) * (10 ** n)) + ((10 ** div) * (karatsuba(a+b,c+d) -ac -bd )) + karatsuba(b,d)) 
 
 
 if __name__ == '__main__':
 
 	x,y = map(int, raw_input().split())
-	print karatsuba(x,y)
+	print (karatsuba(x,y))
