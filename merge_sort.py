@@ -10,7 +10,7 @@ def mergesort(ls):
 	n = len(ls)
 
 	if  n > 1:
-		A = ls[:(n/2)-1]
+		A = ls[:(n/2)]
 		B = ls[n/2: ]
 		mergesort(A)
 		mergesort(B)
@@ -34,31 +34,16 @@ def merge(ls,A,B):
 
 		k += 1
 
-	if i == nA:
-		while j < nB:
-			ls[k] = B[j]
-			j += 1
-			k += 1
-
-	else:
-		while i < nA:
-			ls[k] = A[i]
-			i += 1
-			k += 1
-
-
-	"""
-
 	while i <  nA:
 		ls[k] = A[i]
 		i += 1
 		k += 1
 
-	while j < nB:
+	while j < nB :
 		ls[k] = A[j]
 		j += 1
 		k += 1
-	"""
+	
 
 
 if __name__ == '__main__':
