@@ -17,7 +17,7 @@ def karatsuba(x,y):
 	b = (x % (10 ** div))
 	d = (y % (10 ** div))
 
-	return ((karatsuba(a,c) * (10 ** n)) + ((10 ** div) * (karatsuba(a+b,c+d) -ac -bd )) + karatsuba(b,d)) 
+	return (karatsuba(a,c) * (10 ** n)) + ((10 ** div) * (karatsuba(a+b,c+d) -ac -bd )) + karatsuba(b,d) 
 
 
 if __name__ == '__main__':
