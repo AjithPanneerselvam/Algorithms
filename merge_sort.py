@@ -34,6 +34,21 @@ def merge(ls,A,B):
 
 		k += 1
 
+	if i == nA:
+		while j < nB:
+			ls[k] = B[j]
+			j += 1
+			k += 1
+
+	else:
+		while i < nA:
+			ls[k] = A[i]
+			i += 1
+			k += 1
+
+
+	"""
+
 	while i <  nA:
 		ls[k] = A[i]
 		i += 1
@@ -43,7 +58,7 @@ def merge(ls,A,B):
 		ls[k] = A[j]
 		j += 1
 		k += 1
-
+	"""
 
 
 if __name__ == '__main__':
@@ -51,6 +66,5 @@ if __name__ == '__main__':
 	# Enter the elements to be sorted
 	ls = raw_input().split()
 	ls = [int(i) for i in ls]
-	print ls
 	mergesort(ls)
 	print ls		# Print the sorted elements.

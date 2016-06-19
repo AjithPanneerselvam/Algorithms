@@ -1,5 +1,6 @@
 """
 Karatsuba Multiplication
+x.y = (10^n * ac + 10^n/2 (ad+bc) + bd)
 """
 def karatsuba(x,y):
 
