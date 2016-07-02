@@ -1,5 +1,5 @@
 """
-Sum of subset problems using dynamic programming (To find whether the target is present as the sum of the subset given)
+Sum of subset problems using dynamic programming
 Time complexity - O(sum * size_of_subset)
 Space complexity - O(sum * size_of_subset)
 """
