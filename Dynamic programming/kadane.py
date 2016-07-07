@@ -9,11 +9,13 @@ def kadane(ls,n):
 	current_max = max_so_far = 0 
 	negative = 1
 
-	for i in range(n):
+	# To find whether there  is atleast one positive integer
+	for i in range(n):					
 		if ls[i] >= 0:
 			negative = 0
 			break 
 
+	# If there is not even one postive integer
 	if negative == 1:
 		current_max = ls[0]
 		for i in range(1,n):
@@ -22,6 +24,7 @@ def kadane(ls,n):
 
 		return current_max
 
+	# This is the original version of Kadane Algorithm
 	else:
 		for i in range(n):
 			current_max = current_max + ls[i]
