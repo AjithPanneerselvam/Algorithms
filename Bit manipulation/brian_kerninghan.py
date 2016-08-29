@@ -1,7 +1,7 @@
 """
 Brian Kerninghan - Count the number of set bits in an integer
 Time Complexity - O(log n)
-Key idea - n & (n-1)
+Key idea: n & (n-1)
 """
 
 def brian_kerninghan(n):
