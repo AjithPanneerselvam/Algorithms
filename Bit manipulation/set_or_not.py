@@ -7,6 +7,6 @@ m = input()
 temp = 1 << (m-1)
 
 if ((n and temp) == 0):
-  print "m'th bit in {} is not set".format(n) 
+  print "not set" 
 else:
-  print "m'th bit in {} is set".format(n) 
+  print "set"
