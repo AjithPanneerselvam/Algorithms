@@ -8,7 +8,7 @@ if number == 1:
     print "1 is divisble by 2^0"
 
 # Working with bits will always makes your machine happy - O(1)
-elif(not(number & number-1)):
+elif(not(number and number-1)):
     count = 0
     num =number
     while(num):
