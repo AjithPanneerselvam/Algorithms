@@ -1,6 +1,5 @@
 /*
 To find the number of connected graphs using depth first search
-https://www.hackerearth.com/notes/graph-theory-part-i/
 */
 
 #include <iostream>
