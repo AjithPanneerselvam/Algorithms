@@ -1,4 +1,4 @@
-"""                        ---------Tree---------                            """
+""" Tree """
 
 
 # Defining node

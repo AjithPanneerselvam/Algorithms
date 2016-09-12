@@ -5,19 +5,30 @@ class Stack(object):
         self.stack = []
         self.top = -1
 
-    def push(self,data):
-        self.stack.append(data)
+    def push(self,val):
+        self.stack.append(val)
         self.top += 1
 
     def pop(self):
-        self.top -= 1
-        return self.stack.pop()
+        if self.is_empty():
+            #print "Stack underflow"
+            return
+        else:
+            self.top -= 1
+            return self.stack.pop()
 
     def peep(self):
         return self.stack[self.top]
 
+    def is_empty(self):
+        if self.top == -1:
+            return True
+        else:
+            return False
+
     def size(self):
         return self.top + 1
+
 
 
 #stack = Stack()
