@@ -35,7 +35,7 @@ int main()
         adjaceny_list[vertices1].push_back(vertices2);
         adjaceny_list[vertices2].push_back(vertices1);
     }
-    
+
 /*
     for (i = 1; i <= nodes; i++)                                    // To display the adjacency list
     {
