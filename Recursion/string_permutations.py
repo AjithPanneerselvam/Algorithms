@@ -1,7 +1,6 @@
 """
-Print all the string permutations using recursion
+Print all the string permutations using backtracking
 """
-
 def permutations(string,index,size):
 
 	if index == size:
@@ -11,7 +10,7 @@ def permutations(string,index,size):
 	for i in range(index,size):
 		string[i], string[index] = string[index], string[i]
 		permutations(string,index+1,size,itr)
-		string[i], string[index] = string[index], string[i] 
+		string[i], string[index] = string[index], string[i]
 
 if __name__ == '__main__':
 	string = raw_input()
