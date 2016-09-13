@@ -8,34 +8,37 @@ class Queue(object):
         self.front = -1
         self.rear = -1
 
+
     def enqueue(self,val):
         if self.is_empty():
             self.front += 1
             self.rear += 1
+            self.queue.append(val)
         else:
             self.rear += 1
             self.queue.append(val)
+
 
     def dequeue(self):
         if self.is_empty():
             return "Underflow"
 
         elif self.front  == self.rear:
-            temp = self.fornt
+            temp = self.front
             self.front = self.rear = -1
             return self.queue[temp]
 
         else:
             self.front += 1
-            return self.queue[self.front ]
+            return self.queue[self.front - 1]
 
 
     def peek(self):
         if self.is_empty():
             return "Underflow"
         else:
-            print "rear",self.rear
             return self.queue[self.front]
+
 
     def is_empty(self):
         if self.front == -1:
@@ -43,12 +46,12 @@ class Queue(object):
         else:
             return False
 
+
     def size(self):
         if self.is_empty():
             return 0
         else:
             return (self.rear - self.front + 1)
-
 
 
 
@@ -59,41 +62,53 @@ class PyQueue(object):
     def __init__(self):
         self.queue = deque()
 
+
     def enqueue(self,val):
         self.queue.append(val)
 
+
     def dequeue(self):
-        return self.queue.popleft()
+        if self.is_empty():
+            return "Underflow"
+        else:
+            return self.queue.popleft()
+
 
     def peek(self):
         return self.queue[len(self.queue) - 1]
 
+
     def is_empty(self):
         return not(len(self.queue))
+
 
     def size(self):
         return len(self.queue)
 
 
 
-#queue = Queue()
-#pyqueue = PyQueue()
-#pyqueue.is_empty()
-#pyqueue.enqueue(5)
-#pyqueue.enqueue(6)
-#pyqueue.enqueue(7)
-#pyqueue.enqueue(8)
-#print pyqueue.dequeue()
-#print pyqueue.peek()
-#print pyqueue.size()
-#print pyqueue.queue
-
 # queue = Queue()
+# pyqueue = PyQueue()
+#
+#
+# pyqueue.is_empty()
+# pyqueue.enqueue(5)
+# pyqueue.enqueue(6)
+# pyqueue.enqueue(7)
+# pyqueue.enqueue(8)
+# print list(pyqueue.queue)
+# print pyqueue.dequeue()
+# print pyqueue.peek()
+# print pyqueue.size()
+# print list(pyqueue.queue)                       # deque => list
+#
+#
 # queue.is_empty()
 # queue.enqueue(5)
 # queue.enqueue(6)
 # queue.enqueue(7)
 # queue.enqueue(8)
+# print queue.queue
 # print queue.dequeue()
 # print queue.peek()
 # print queue.size()
