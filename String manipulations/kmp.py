@@ -2,7 +2,7 @@
 KMP -> Knuth - Morris - Pratt
 To find whether the given pattern(P) is present in the string(S), if present return the start of the index in string(S)
 Brute force approach will have the runnung time complexity of O(n*m), where n and m are string S length and Pattern P length respectively.
-KMP algorithm will have running time complexity of O(n+m). 
+KMP algorithm will have running time complexity of O(n+m).
 """
 
 # Create prefix table
@@ -17,11 +17,11 @@ def prefix_table(P,F,m):
 		elif j > 0:
 			j = F[j-1]
 		else:
-			F.append(0) 
+			F.append(0)
 			i +=1
 
 def kmp(S,P):
-	
+
 	m = len(P)
 	n = len(S)
 	F = []
@@ -42,11 +42,7 @@ def kmp(S,P):
 	return -1							# return -1, if no match
 
 
-	
+
 S = raw_input()
 P = raw_input()
 print kmp(S,P)
-
-
-
-
