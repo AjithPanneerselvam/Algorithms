@@ -11,5 +11,5 @@ def brian_kerninghan(n):
         count += 1
     return count
 
-n = int(raw_input("Enter any interger \n"))
+n = input()
 print brian_kerninghan(n)
