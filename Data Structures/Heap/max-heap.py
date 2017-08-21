@@ -1,37 +1,40 @@
 """
 Maximum Heap
+
+Time complexity - O(log n)
+Space complexity - O(n)
 """
 
-class BinaryHeap:
+class MaxHeap:
     def __init__(self):
         self.size = 0
         # '#' represents that index 0 is invalid
-        self.heap = ['#']
+        self.maxHeap = ['#']
 
 
     def heapify(self):
         """
         This method is used to preserve the Heap property by swapping elements.
         """
-        j = len(self.heap) - 1
+        j = len(self.maxHeap) - 1
         parent = int(j / 2)
-        while(parent >= 1 and self.heap[parent] < self.heap[j]):
-            self.heap[parent], self.heap[j] = self.heap[j], self.heap[parent]
+        while(parent >= 1 and self.maxHeap[parent] < self.maxHeap[j]):
+            self.maxHeap[parent], self.maxHeap[j] = self.maxHeap[j], self.maxHeap[parent]
             j = parent
             parent = int(parent / 2)
 
 
     def insert(self, data):
-        self.heap.append(data)
+        self.maxHeap.append(data)
         self.size = self.size + 1
         self.heapify()
 
 
     def maxChildIndex(self, index):
         if ((index * 2) + 1) <= self.size:
-            if self.heap[(index * 2) + 1] > self.heap[index * 2]:
+            if self.maxHeap[(index * 2) + 1] > self.maxHeap[index * 2]:
                 return ((index * 2) + 1)
-            elif self.heap[(index * 2) + 1] < self.heap[index * 2]:
+            elif self.maxHeap[(index * 2) + 1] < self.maxHeap[index * 2]:
                 return (index * 2)
             else:
                 # return any node, if both the children has same value
@@ -46,8 +49,8 @@ class BinaryHeap:
     def percolateDown(self, index):
         while(index * 2 <= self.size):
             maxChildIndex = self.maxChildIndex(index)
-            if self.heap[index] < self.heap[maxChildIndex]:
-                self.heap[index], self.heap[maxChildIndex] = self.heap[maxChildIndex], self.heap[index]
+            if self.maxHeap[index] < self.maxHeap[maxChildIndex]:
+                self.maxHeap[index], self.maxHeap[maxChildIndex] = self.maxHeap[maxChildIndex], self.maxHeap[index]
             index = maxChildIndex
 
 
@@ -57,10 +60,10 @@ class BinaryHeap:
 
         self.size = self.size - 1
         if self.size == 1:
-            return self.heap.pop()
-        maxElement = self.heap[1]
-        self.heap[1] = self.heap[-1]
-        self.heap.pop()
+            return self.maxHeap.pop()
+        maxElement = self.maxHeap[1]
+        self.maxHeap[1] = self.maxHeap[-1]
+        self.maxHeap.pop()
         self.percolateDown(1)
         return maxElement
 
@@ -68,29 +71,29 @@ class BinaryHeap:
     def peekMax(self):
         if self.size == 0:
             return
-        return self.heap[1]
+        return self.maxHeap[1]
 
 
     def printHeap(self):
         if self.size == 0:
             return
-        print (self.heap)
+        print (self.maxHeap)
 
 
 #                                 ### Testcases ###
-# heapObj = BinaryHeap()
-# heapObj.insert(9)
-# heapObj.insert(5)
-# heapObj.insert(4)
-# heapObj.insert(3)
-# heapObj.insert(8)
-# heapObj.insert(7)
-# heapObj.insert(6)
-# heapObj.printHeap()
-# heapObj.insert(11)
-# heapObj.printHeap()
-# heapObj.insert(10)
-# heapObj.printHeap()
-# print (heapObj.extractMax())
-# heapObj.printHeap()
-# print (heapObj.peekMax())
+heapObj = MaxHeap()
+heapObj.insert(9)
+heapObj.insert(5)
+heapObj.insert(4)
+heapObj.insert(3)
+heapObj.insert(8)
+heapObj.insert(7)
+heapObj.insert(6)
+heapObj.printHeap()
+heapObj.insert(11)
+heapObj.printHeap()
+heapObj.insert(10)
+heapObj.printHeap()
+print (heapObj.extractMax())
+heapObj.printHeap()
+print (heapObj.peekMax())
