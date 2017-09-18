@@ -6,24 +6,25 @@ Space Complexity - O(N)
 """
 
 class MinHeap:
-    def __init__(self):
+    def __init__(self, listValues = []):
         self.size = 0
         self.minHeap = ['#']
+        for val in listValues:
+            self.minHeap.append(val)
+            self.size += 1
+            self.percolateUp(self.size)
 
 
-    def heapify(self):
-        j = len(self.minHeap) - 1
-        parent = int(j / 2)
-        while(parent >= 1 and self.minHeap[parent] > self.minHeap[j]):
-            self.minHeap[parent], self.minHeap[j] = self.minHeap[j], self.minHeap[parent]
-            j = parent
-            parent = int(parent / 2)
+    def peekMin(self):
+        if self.size == 0:
+            return
+        return self.minHeap[1]
 
 
-    def insert(self, data):
-        self.minHeap.append(data)
-        self.size = self.size + 1
-        self.heapify()
+    def __str__(self):
+        if self.size == 0:
+            return
+        return str(self.minHeap)
 
 
     def minChildIndex(self, index):
@@ -42,6 +43,14 @@ class MinHeap:
             return (-1)
 
 
+    def percolateUp(self, index):
+        parent = int(index / 2)
+        while(parent >= 1 and self.minHeap[parent] > self.minHeap[index]):
+            self.minHeap[parent], self.minHeap[index] = self.minHeap[index], self.minHeap[parent]
+            index = parent
+            parent = int(parent / 2)
+
+
     def percolateDown(self, index):
         while(index * 2 <= self.size):
             minChildIndex = self.minChildIndex(index)
@@ -53,8 +62,7 @@ class MinHeap:
     def extractMin(self):
         if self.size == 0:
             return
-
-        self.size = self.size - 1
+        self.size -= 1
         if self.size == 1:
             return self.minHeap.pop()
         minElement = self.minHeap[1]
@@ -64,32 +72,32 @@ class MinHeap:
         return minElement
 
 
-    def peekMin(self):
-        if self.size == 0:
-            return
-        return self.minHeap[1]
+    def decreaseKey(self, index, newValue):
+        oldValue = self.minHeap[index]
+        self.minHeap[index] = newValue
+        if newValue < oldValue:
+            self.percolateUp(index)
+        elif newValue > oldValue:
+            self.percolateDown(index)
 
 
-    def printHeap(self):
-        if self.size == 0:
-            return
-        print (self.minHeap)
+    def insert(self, data):
+        self.minHeap.append(data)
+        self.size += 1
+        self.percolateUp(self.size)
 
 
 #                                 ### Testcases ###
-# heapObj = MinHeap()
-# heapObj.insert(9)
-# heapObj.insert(5)
-# heapObj.insert(4)
-# heapObj.insert(3)
-# heapObj.insert(8)
-# heapObj.insert(7)
-# heapObj.insert(6)
-# heapObj.printHeap()
-# heapObj.insert(1)
-# heapObj.printHeap()
-# heapObj.insert(2)
-# heapObj.printHeap()
-# print (heapObj.extractMin())
-# heapObj.printHeap()
-# print (heapObj.peekMin())
+heapObj = MinHeap([9,5,4,3,8,7,6])
+print(heapObj)
+heapObj.insert(1)
+print(heapObj)
+heapObj.insert(2)
+print(heapObj)
+print (heapObj.extractMin())
+print(heapObj)
+print (heapObj.peekMin())
+heapObj.decreaseKey(4,1)
+print(heapObj)
+heapObj.decreaseKey(2,11)
+print(heapObj)
