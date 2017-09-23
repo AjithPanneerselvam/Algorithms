@@ -1,12 +1,16 @@
 """
 Implementation of Directed Graph
 """
+from sys import maxsize
+INFINITY = maxsize
 
 
 class Vertex:
     def __init__(self, label):
         self.label = str(label)
         self.adjList = {}
+        self.distance = INFINITY
+        self.predecessor = None
 
     def addNeighbour(self, toVertex, cost = 0):
         self.adjList[toVertex] = cost

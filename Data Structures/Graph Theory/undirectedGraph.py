@@ -1,13 +1,15 @@
 """
 Implementation of Undirected Graph
 """
+from sys import maxsize
+INFINITY = maxsize
 
 class Vertex:
     def __init__(self, label):
         self.label = str(label)
         self.adjList = {}
         self.color = None
-        self.distance = 0
+        self.distance = maxsize
         self.predecessor = None
 
     def addNeighbour(self, toVertex, cost = 0):
