@@ -8,7 +8,7 @@ class Vertex:
     def __init__(self, label):
         self.label = str(label)
         self.adjList = {}
-        self.color = None
+        self.color = "white"
         self.distance = maxsize
         self.predecessor = None
 
@@ -66,23 +66,19 @@ class Graph:
 
 
 # Testcase - Undirected graph
-def undirectedTestcases():
+def testcases():
     g = Graph()
 
     for i in range(6):
-        g.addVertex(chr(ord('u') + i))
+        g.addVertex(chr(ord('A') + i))
 
-    g.addEdge('u','v',2)
-    g.addEdge('u','x',1)
-    g.addEdge('u','w',5)
-    g.addEdge('v','w',3)
-    g.addEdge('v','x',2)
-    g.addEdge('x','w',3)
-    g.addEdge('x','y',1)
-    g.addEdge('w','y',1)
-    g.addEdge('w','z',5)
-    g.addEdge('y','z',1)
-
+    g.addEdge('A', 'B', 5)
+    g.addEdge('A', 'D', 9)
+    g.addEdge('A', 'E', 2)
+    g.addEdge('B', 'C', 2)
+    g.addEdge('C', 'D', 3)
+    g.addEdge('D', 'F', 2)
+    g.addEdge('E', 'F', 3)
 
     # print (g.getVertices())
     # print (g.verticesCount())

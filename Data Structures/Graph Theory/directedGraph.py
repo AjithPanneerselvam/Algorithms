@@ -9,11 +9,15 @@ class Vertex:
     def __init__(self, label):
         self.label = str(label)
         self.adjList = {}
+        self.color = "white"
         self.distance = INFINITY
         self.predecessor = None
 
     def addNeighbour(self, toVertex, cost = 0):
         self.adjList[toVertex] = cost
+
+    def setColor(self, color):
+        self.color = color
 
     def getConnections(self):
         return self.adjList.keys()
@@ -23,6 +27,9 @@ class Vertex:
 
     def getLabel(self):
         return self.label
+
+    def getColor(self):
+        return self.color
 
     def __str__(self):
         return self.label + " connected to " + str([x.label for x in self.adjList])
@@ -59,7 +66,7 @@ class Graph:
 
 
 # Testcases - Directed Graph
-def directedTestcases():
+def testcases():
     g = Graph()
 
     for i in range(6):

@@ -9,8 +9,8 @@ class MinHeap:
     def __init__(self, listValues = []):
         self.size = 0
         self.minHeap = ['#']
-        for val in listValues:
-            self.minHeap.append(val)
+        for i in range(len(listValues)):
+            self.minHeap.append(listValues[i])
             self.size += 1
             self.percolateUp(self.size)
 
@@ -34,7 +34,7 @@ class MinHeap:
             elif self.minHeap[(index * 2) + 1] > self.minHeap[index * 2]:
                 return (index * 2)
             else:
-                # return any node, if both the children has same value
+                #return any node, if both the children has same value
                 return (index * 2)
         elif (index * 2) <= self.size:
             return (index * 2)
@@ -62,9 +62,12 @@ class MinHeap:
     def extractMin(self):
         if self.size == 0:
             return
+
         self.size -= 1
+
         if self.size == 1:
             return self.minHeap.pop()
+
         minElement = self.minHeap[1]
         self.minHeap[1] = self.minHeap[-1]
         self.minHeap.pop()
@@ -73,8 +76,8 @@ class MinHeap:
 
 
     def decreaseKey(self, index, newValue):
-        oldValue = self.minHeap[index][0]
-        self.minHeap[index][0] = newValue
+        oldValue = self.minHeap[index]
+        self.minHeap[index] = newValue
         if newValue < oldValue:
             self.percolateUp(index)
         elif newValue > oldValue:
@@ -87,8 +90,9 @@ class MinHeap:
         self.percolateUp(self.size)
 
 
+
 #                                 ### Testcases ###
-# heapObj = MinHeap([9,5,4,3,8,7,6])
+# heapObj = MinHeap([9, 5, 4, 3, 8, 7, 6])
 # print(heapObj)
 # heapObj.insert(1)
 # print(heapObj)

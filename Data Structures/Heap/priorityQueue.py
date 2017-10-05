@@ -6,9 +6,11 @@ class PriorityQueue():
     def __init__(self, listValues = []):
         self.size = 0
         self.pqueue = ['#']
-        for val in listValues:
-            self.pqueue.append(val)
+        self.lookup = {}
+        for i in range(len(listValues)):
+            self.pqueue.append(listValues[i])
             self.size += 1
+            self.lookup[listValues[i][1]] = i + 1
             self.percolateUp(self.size)
 
 
@@ -43,8 +45,11 @@ class PriorityQueue():
     def percolateUp(self, index):
         parent = int(index / 2)
         while(parent >= 1 and self.pqueue[parent][0] > self.pqueue[index][0]):
-            self.pqueue[parent][0], self.pqueue[index][0] = self.pqueue[index][0], self.pqueue[parent][0]
-            self.pqueue[parent][1], self.pqueue[index][1] = self.pqueue[index][1], self.pqueue[parent][1]
+            self.pqueue[parent], self.pqueue[index] = self.pqueue[index], self.pqueue[parent]
+            self.lookup[self.pqueue[parent][1]] = parent
+            self.lookup[self.pqueue[index][1]] = index
+            # self.pqueue[parent][0], self.pqueue[index][0] = self.pqueue[index][0], self.pqueue[parent][0]
+            # self.pqueue[parent][1], self.pqueue[index][1] = self.pqueue[index][1], self.pqueue[parent][1]
             index = parent
             parent = int(parent / 2)
 
@@ -53,8 +58,9 @@ class PriorityQueue():
         while(index * 2 <= self.size):
             minChildIndex = self.minChildIndex(index)
             if self.pqueue[index][0] > self.pqueue[minChildIndex][0]:
-                self.pqueue[index][0], self.pqueue[minChildIndex][0] = self.pqueue[minChildIndex][0], self.pqueue[index][0]
-                self.pqueue[index][1], self.pqueue[minChildIndex][1] = self.pqueue[minChildIndex][1], self.pqueue[index][1]
+                self.pqueue[index], self.pqueue[minChildIndex] = self.pqueue[minChildIndex], self.pqueue[index]
+                self.lookup[self.pqueue[index][1]] = index
+                self.lookup[self.pqueue[minChildIndex][1]] = minChildIndex
             index = minChildIndex
 
 
@@ -62,10 +68,14 @@ class PriorityQueue():
         if self.size == 0:
             return
 
-        self.size -= 1
+
+        del self.lookup[self.pqueue[1][1]]
+
         if self.size == 1:
+            self.size -= 1
             return self.pqueue.pop()
 
+        self.size -= 1
         minElement = self.pqueue[1]
         self.pqueue[1] = self.pqueue[-1]
         self.pqueue.pop()
@@ -85,6 +95,7 @@ class PriorityQueue():
     def insert(self, data):
         self.pqueue.append(data)
         self.size += 1
+        self.lookup[self.pqueue[-1][1]] = self.size
         self.percolateUp(self.size)
 
 
