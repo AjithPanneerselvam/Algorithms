@@ -1,7 +1,8 @@
 """
 Depth First Search
-Time-Complexity - O()
-Space-Complexity - O()
+
+Time-Complexity - O(V + E)
+Space-Complexity - O(V)
 """
 
 from undirectedGraph import undirectedTestcases

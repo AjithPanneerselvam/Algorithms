@@ -1,5 +1,8 @@
 """
 Dijkstra Algorithm - Single Source Shortest Path
+
+Time Complexity - O(E log V)
+Space Complexity - O(E + V)
 """
 
 import sys
@@ -16,20 +19,17 @@ def dijkstra(graphObj, startVertex):
     for vertex in graphObj.getVertices():
         if vertex == startVertex:
             pq.insert([0, vertex])
+            graphObj.verticesList[startVertex].distance = 0
         else:
             pq.insert([INFINITY, vertex])
 
-    graphObj.verticesList[startVertex].distance = 0
-
     while(len(pq.pqueue)):
         currentVertex = pq.extractMin()
-
+        
         if len(pq.pqueue) == 1:
             break
 
-        # print(pq.pqueue)
-        # print (pq.lookup)
-
+        # print(pq.pqueue, pq.lookup)
         for adjNode in graphObj.verticesList[currentVertex[1]].getConnections():
             newDistance = graphObj.verticesList[currentVertex[1]].distance + graphObj.verticesList[currentVertex[1]].adjList[adjNode]
             if newDistance < graphObj.verticesList[adjNode].distance:

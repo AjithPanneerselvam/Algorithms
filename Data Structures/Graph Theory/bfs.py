@@ -1,34 +1,31 @@
 """
-Breadth First Search
-Time-Complexity - O(V + E)
-Space-Complexity - O(V)
-"""
+Breadth First Search - Directed Graph
 
-from undirectedGraph import testcases
+Time Complexity - O(V + E)
+Space Complexity - O(V)
+"""
+from directedGraph import testcases
 from collections import deque
 
 
-def bfs(startVertex):
-    g = testcases()
+def bfs(graphObj, startVertex):
     queue = deque()
 
-    for vertex in g.verticesList:
-        g.verticesList[vertex].setColor('white')
-
-    g.verticesList[startVertex].setColor('grey')
-    queue.append(g.verticesList[startVertex])
+    graphObj.verticesList[startVertex].setColor("grey")
+    queue.append(graphObj.verticesList[startVertex])
 
     while(len(queue)):
         poppedVertex = queue.popleft()
 
-        for adjVertex in poppedVertex.adjList:
-            if g.verticesList[adjVertex].getColor() == 'white':
-                g.verticesList[adjVertex].setColor('grey')
-                queue.append(g.verticesList[adjVertex])
+        for adjVertex in graphObj.verticesList[poppedVertex.getLabel()].getConnections():
+            if(graphObj.verticesList[adjVertex].getColor() == "white"):
+                queue.append(graphObj.verticesList[adjVertex])
+                graphObj.verticesList[adjVertex].setColor("grey")
 
-        poppedVertex.setColor('black')
-        print (poppedVertex.getLabel())
+        graphObj.verticesList[poppedVertex.getLabel()].setColor("black")
+        print(poppedVertex.getLabel())
 
 
-                                    ### Testcases ###
-# bfs('u')
+#                                   ### Testcases ###
+graphObj = testcases()
+bfs(graphObj, 'A')

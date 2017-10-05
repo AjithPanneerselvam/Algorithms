@@ -4,7 +4,7 @@ Topological Sorting
 Time-Complexity - O(V + E), where n is the number
 Space-Complexity - O(V)
 """
-from directedGraph import directedTestcases
+from directedGraph import testcases
 
 
 def topSortAux(g, vertex, visited, topSorted):
@@ -25,8 +25,8 @@ def topSort(g):
     return topSorted
 
 
-#                               ### Testcases ###
-# g = directedTestcases()
-# topSorted = topSort(g)
-# while(len(topSorted)):
-#     print(topSorted.pop())
+                              ### Testcases ###
+g = testcases()
+topSorted = topSort(g)
+while(len(topSorted)):
+    print(topSorted.pop())
