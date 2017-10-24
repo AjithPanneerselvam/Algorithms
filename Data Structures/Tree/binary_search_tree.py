@@ -1,4 +1,6 @@
-""" Tree """
+""" Binary Search Tree """
+
+import random
 
 
 # Defining node
@@ -10,18 +12,17 @@ class Node(object):
 
 # Operations performed on the tree
 class Tree(object):
+
     def insert(self,root,val):
         if root == None:
             root = Node(val=val)
             return root
-
         if(root.val >= val):
             root.left = self.insert(root.left,val)
-
         elif (root.val < val):
             root.right = self.insert(root.right,val)
-
         return root
+
 
     def preorder(self,root):
         if root != None:
@@ -29,11 +30,13 @@ class Tree(object):
             self.preorder(root.left)
             self.preorder(root.right)
 
+
     def postorder(self,root):
         if root != None:
             self.postorder(root.left)
             self.postorder(root.right)
             print root.val
+
 
     def inorder(self,root):
         if root != None:
@@ -42,21 +45,33 @@ class Tree(object):
             self.inorder(root.right)
 
 
+def testcaseBST(self):
+    root = None
+    binaryTree = BinaryTree()
+    binaryTree.insert(root, 5)
+    binaryTree.insert(root, 3)
+    binaryTree.insert(root, 2)
+    binaryTree.insert(root, 4)
+    binaryTree.insert(root, 6)
+    return binaryTree
 
-#tree = Tree()
-#root = None
 
-## Enter the number of nodes in a tree
-#number_of_nodes = input()
-#while(number_of_nodes):
-#    val = input()
-#    root = tree.insert(root,val)
-#    number_of_nodes -= 1
+def testcaseNonBST(self):
+    root = Node(3)
+    l_h1 = Node(6)
+    r_h1 = Node(8)
+    root.left = l_h1
+    root.right = r_h1
 
-##Traversals
-#print "Preorder Traversal"
-#tree.preorder(root)
-#print "Postorder Traversal"
-#tree.postorder(root)
-#print "Inorder Traversal"
-#tree.inorder(root)
+    l1_h2 = Node(7)
+    l_h1.left = l1_h2
+    l_h1.right = None
+    l1_h2.left = l1_h2.right = None
+
+    l3_h2 = Node(5)
+    l4_h2 = Node(1)
+    l3_h2.left = l3_h2.right = l4_h2.left = l4_h2.right = None
+    r_h1.left = l3_h2
+    r_h1.right = l4_h2
+
+    return root
