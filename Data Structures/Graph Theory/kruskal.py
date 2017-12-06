@@ -33,7 +33,7 @@ def kruskal(edgeWeights, edgeNames):
 
 
 def quicksort(edgeWeights, edgeNames, left, right):
-    global comparisons
+
     if left < right:
         pivotIndex = partition(edgeWeights, edgeNames, left, right)
         quicksort(edgeWeights, edgeNames, left, pivotIndex - 1)
