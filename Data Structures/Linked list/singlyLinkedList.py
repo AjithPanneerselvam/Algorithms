@@ -14,10 +14,6 @@ class List:
         self.length = 0
 
 
-    def length(self):
-        return self.length
-
-
     def insertBeginning(self,data):
         node = Node()
         node.data = data
@@ -123,20 +119,112 @@ class List:
 
     def displayListLength(self):
         print (self.length)
+
+
+def pal(ehead):
+    after = ehead.next
+    before = ehead
+    while(after != None):
+        temp = after.next
+        after.next = before
+        before = after
+        after = temp
+    ehead.next = None
+    ehead = before
+    return ehead
+
+def ll(head):
+
+    oddtrav   = head
+    eventrav  = head.next
+    oddhead = evenhead = ohead = ehead =  None
+    firstFlag = 1
+    while(oddtrav and eventrav and firstFlag):
+        if firstFlag:
+            if oddtrav:
+                newNode = Node()
+                newNode.data = oddtrav.data
+                oddhead = newNode
+            if eventrav:
+                newNode = Node()
+                newNode.data = eventrav.data
+                evenhead = newNode
+
+            if oddtrav.next:
+                oddtrav = oddtrav.next.next
+            else:
+                oddtrav = None
+
+            if eventrav.next:
+                eventrav = eventrav.next.next
+            else:
+                eventrav = None
+
+            ohead = oddhead
+            ehead = evenhead
+            firstFlag = 0
+
+
+        if oddtrav:
+            newNode = Node()
+            newNode.data = oddtrav.data
+            oddhead.next = newNode
+            oddhead = oddhead.next
+        if eventrav:
+            newNode = Node()
+            newNode.data = eventrav.data
+            evenhead.next = newNode
+            evenhead = evenhead.next
+
+
+        if oddtrav.next:
+            oddtrav = oddtrav.next.next
+        else:
+            oddtrav = None
+
+        if eventrav == None:
+            eventrav = None
+        elif eventrav.next:
+            eventrav = eventrav.next.next
+        else:
+            eventrav = None
+
+    oddhead.next = None
+    evenhead.next = None
+    displayll(ohead)
+    displayll(ehead)
+    evenhead = pal(ehead)
+    oddhead.next = evenhead
+    return ohead
+
+def displayll(head):
+    if head == None:
+        return
+
+    temp = head
+    while temp != None:
+        print ("{} -> ".format(temp.data), end = ' ')
+        temp = temp.next
+
+    print ("NULL")
+
                                     ### Testcases ###
 
-# listObj = List()
-# listObj.insertBeginning(1)
-# listObj.insertEnd(3)
-# listObj.insertEnd(4)
-# listObj.insertEnd(5)
-# listObj.display()
-# listObj.length
-# listObj.displayListLength()
-# listObj.insertPosition(2, 2)
-# listObj.display()
+listObj = List()
+listObj.insertBeginning(1)
+listObj.insertEnd(3)
+listObj.insertEnd(4)
+listObj.insertEnd(5)
+listObj.display()
+listObj.length
+listObj.displayListLength()
+listObj.insertPosition(2, 2)
+listObj.display()
 # listObj.deletePosition(3)
 # listObj.display()
 # listObj.deleteEnd()
 # listObj.deleteBeginning()
 # listObj.display()
+
+ohead = ll(listObj.head)
+displayll(ohead)

@@ -25,7 +25,7 @@ def dijkstra(graphObj, startVertex):
 
     while(len(pq.pqueue)):
         currentVertex = pq.extractMin()
-        
+
         if len(pq.pqueue) == 1:
             break
 
