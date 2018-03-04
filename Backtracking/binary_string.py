@@ -12,12 +12,11 @@ def binary(n,bi):
         binary(n-1, bi)
 
 
-if __name__ == '__main__':
-    n = input()
-    bi = []
+n = input()
+bi = []
 
-    # Defining a list of size n with dummy values
-    for i in range(n):
-        bi.append(-1)
+# Defining a list of size n with dummy values
+for i in range(n):
+    bi.append(-1)
 
-    binary(n-1, bi)
+binary(n-1, bi)

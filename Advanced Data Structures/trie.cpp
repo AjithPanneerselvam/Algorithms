@@ -5,7 +5,9 @@ Time Complexity
   Search - O(n)
   Insert - O(n)
   Delete - O(n)
+where n is the length of the string
 
+Space Complexity - (W * l), where W is the number of words and l is the average length of the words
 */
 
 
@@ -18,6 +20,7 @@ using namespace std;
 struct node{
   char data;
   unordered_map<char, struct node*> children;
+  int frequency;
   bool endOfString;
 };
 
@@ -28,6 +31,7 @@ Node createNode(char data){
   Node newNode = new node;
   newNode->data = data;
   newNode->children;
+  newNode->frequency = 0;
   newNode->endOfString = false;
   return newNode;
 }
@@ -48,6 +52,7 @@ void insert(Node root, char* s){
     root->children[*s] = newNode;
   }
 
+  root->frequency += 1;
   root = root->children[*s];
   cout<<root->data;
   if(*(s+1) == '\0'){
@@ -81,6 +86,25 @@ bool isPrefix(Node root, char* s){
 }
 
 
+void del(Node root, char* s){
+  if(*s == '\0') return;
+
+  unordered_map<char, Node>::iterator it;
+  it = root->children.find(*s);
+  if(it == root->children.end()) return;
+
+  root->children[*s]->frequency -= 1;
+
+  if(*(s+1) != '\0')
+    delete(root->children[*s], s+1);
+
+  if(root->children[*s]->frequency == 0){
+    delete root->children[*s];
+    root->children.erase(*s);
+  }
+}
+
+
 // void pri(Node root){
 //   for(unordered_map<char, Node>::iterator it = root->children.begin(); it != root->children.end(); it++)
 //     cout<<it->first;
@@ -103,6 +127,9 @@ void testcases(Node root){
   cout<<isPrefix(root, "abc")<<"\n";
   cout<<isPrefix(root, "bcd")<<"\n";
   cout<<isPrefix(root, "xyz")<<"\n";
+
+  del(root, "abc");
+  cout<<isPresent(root, "abc");
 }
 
 
@@ -110,6 +137,6 @@ void testcases(Node root){
 int main(){
   //Root node has no data
   Node root = createNode('#');
-  // testcases(root);
+  testcases(root);
   return 0;
 }

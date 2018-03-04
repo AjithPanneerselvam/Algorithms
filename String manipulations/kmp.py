@@ -20,26 +20,30 @@ def prefix_table(P,F,m):
 			F.append(0)
 			i +=1
 
-def kmp(S,P):
 
+def kmp(S,P):
 	m = len(P)
 	n = len(S)
 	F = []
-	prefix_table(P,F,m)					# Call prefix_table function
+
+	# Call prefix_table function
+	prefix_table(P,F,m)
 	j = 0
 	for i in range(n):
 		if (S[i] == P[j]):
 			if j == m-1:
-				return i-j 				# return the start of the index matched in string S.
+				# return the start of the index matched in string S.
+				return i-j
 			else:
 				i += 1
 				j += 1
-		elif j>0:
+		elif j > 0:
 			j = F[j-1]
 		else:
 			i += 1
 
-	return -1							# return -1, if no match
+	# return -1, if no match
+	return -1
 
 
 

@@ -13,5 +13,5 @@ def brianKerninghan(n):
 
 
 #                               ### Testcases ###
-# print(brianKerninghan(7))
-# print(brianKerninghan(1024))
+print(brianKerninghan(7))
+print(brianKerninghan(1024))

@@ -1,5 +1,5 @@
 """
-Print all the string permutations using backtracking
+Print all the string permutations using backtracking method.
 """
 def permutations(string,index,size):
 
@@ -12,8 +12,8 @@ def permutations(string,index,size):
 		permutations(string,index+1,size)
 		string[i], string[index] = string[index], string[i]
 
-if __name__ == '__main__':
-	string = raw_input()
-	string = list(string)
-	size = len(string)
-	print permutations(string,0,size)
+
+string = raw_input()
+string = list(string)
+size = len(string)
+print permutations(string,0,size)

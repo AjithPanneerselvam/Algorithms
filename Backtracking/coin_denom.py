@@ -17,7 +17,7 @@ def coin_denom(coins,dictionary,remain):
     if remain in dictionary:
         return dictionary[remain]
 
-    # Python 2.7, maximum integer value is 2147483647
+    # In Python 2.7, maximum integer value is 2147483647
     min_val = maxint
 
     for i in coins:
@@ -30,5 +30,5 @@ def coin_denom(coins,dictionary,remain):
 
     return min_val
 
-# SAMPLE TESTCASE
+                                ### Testcases ###
 #print coin_denom([1,2,3,4], {}, 7)

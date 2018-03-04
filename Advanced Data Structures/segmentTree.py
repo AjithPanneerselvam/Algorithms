@@ -64,7 +64,8 @@ class SegTree:
 
 
     ## Lazy Propagation
-    def update(self, l, r, val, nIndex, start, end):
+    def updat
+    e(self, l, r, val, nIndex, start, end):
         if start > end:
             return
 

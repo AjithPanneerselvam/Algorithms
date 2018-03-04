@@ -5,11 +5,10 @@ Space Complexity - O(1)
 """
 
 def insertion(ls):
-
     for i in range(len(ls)):
         temp = ls[i]
         j = i
-        while(temp < ls[j-1] and j > 0):
+        while(j > 0 and temp < ls[j-1]):
             ls[j] = ls[j-1]
             j -= 1
         ls[j] = temp
