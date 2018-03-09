@@ -1,5 +1,5 @@
 """
-Counting Sort
+Counting Sort 
 Time Complexity - O(n+k), where n is the input size and k is the range of input(maximum element in the input)
 Space Complexity - O(n+k)
 """

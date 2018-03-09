@@ -1,5 +1,5 @@
 """
-Radix Sort - Linear sortig
+Radix Sort - Linear sorting
 Time Complexity - O((n+b)*log n base b), b is the base for representing numbers
 Space Complexity - O(n+b)
 """
@@ -12,7 +12,7 @@ def radix(ls):
         aux = [[] for i in range(10)]
         for element in ls:
             digit = element % mod
-            digit /= div
+            digit = int(digit / div)
             aux[digit].append(element)
 
         if len(aux[0]) == len(ls):
@@ -22,6 +22,7 @@ def radix(ls):
         for outer in aux:
             for inner in outer:
                 ls.append(inner)
+        print(ls)
 
         div *= 10
         mod *= 10
@@ -29,5 +30,5 @@ def radix(ls):
 
 #                                 ### Testcases ###
 #
-# ls = [14,31,18,275,93,102,87,56]
-# print (radix(ls))
+ls = [14,31,18,275,93,102,87,56]
+print (radix(ls))
