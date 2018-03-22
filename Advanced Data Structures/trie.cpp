@@ -39,26 +39,23 @@ Node createNode(char data){
 
 
 void insert(Node root, char* s){
+  root->frequency += 1;
+  cout<<root->data;
+  
   if(*s == '\0'){
     root->endOfString = true;
     return;
   }
-
+  
   unordered_map<char, Node>::iterator it;
-
   it = root->children.find(*s);
+  
   if(it == root->children.end()){
     Node newNode = createNode(*s);
     root->children[*s] = newNode;
   }
-
-  root->frequency += 1;
+  
   root = root->children[*s];
-  cout<<root->data;
-  if(*(s+1) == '\0'){
-    root->endOfString = true;
-    return;
-  }
   insert(root, s+1);
 }
 
@@ -86,29 +83,32 @@ bool isPrefix(Node root, char* s){
 }
 
 
-void del(Node root, char* s){
-  if(*s == '\0') return;
-
+bool del(Node root, char* s){
+  if(*s == '\0') {
+    if(root->endOfString){
+      root->endOfString = false;
+      root->frequency -= 1;
+      return 1;
+    }
+    return 0;
+  }
+  
   unordered_map<char, Node>::iterator it;
   it = root->children.find(*s);
-  if(it == root->children.end()) return;
-
-  root->children[*s]->frequency -= 1;
-
-  if(*(s+1) != '\0')
-    delete(root->children[*s], s+1);
-
-  if(root->children[*s]->frequency == 0){
-    delete root->children[*s];
-    root->children.erase(*s);
+  if(it == root->children.end()) return 0; 
+  
+  if(del(root->children[*s], s+1)){
+    root->frequency -= 1;
+    if(root->children.find(*s) != root->children.end() && root->children[*s]->frequency == 0){
+      Node tempNode = root->children[*s];
+      root->children.erase(*s);
+      delete tempNode;
+    }
+    return 1;
   }
+
+  return 0;
 }
-
-
-// void pri(Node root){
-//   for(unordered_map<char, Node>::iterator it = root->children.begin(); it != root->children.end(); it++)
-//     cout<<it->first;
-// }
 
 
 void testcases(Node root){
@@ -127,9 +127,14 @@ void testcases(Node root){
   cout<<isPrefix(root, "abc")<<"\n";
   cout<<isPrefix(root, "bcd")<<"\n";
   cout<<isPrefix(root, "xyz")<<"\n";
+  
+  cout<<"Delete status - " << del(root, "abc")<<"\n";  
+  cout<<"Is present? " <<isPresent(root, "abc")<<"\n";
+  cout<<"Delete status - " << del(root, "abc")<<"\n";
+  cout<<"Is present? " << isPresent(root, "abc")<<"\n";
+  cout<<"Delete status - " << del(root, "abcd")<<"\n";
+  cout<<"Is present? " << isPresent(root, "abcd")<<"\n";
 
-  del(root, "abc");
-  cout<<isPresent(root, "abc");
 }
 
 
