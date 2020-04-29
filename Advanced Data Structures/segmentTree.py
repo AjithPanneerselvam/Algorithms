@@ -98,22 +98,26 @@ class SegTree:
         print(self.lazyTree)
 
 
-#                                   ### Test ###
-# listVal = [1, 3, 5, 7, 9, 11]
-# sObj = SegTree(listVal)
-# print(sObj.query(0, 3, 0, 0, len(listVal) - 1))
-# print(sObj.query(3, 5, 0, 0, len(listVal) - 1))
-# print(sObj.query(2, 4, 0, 0, len(listVal) - 1))
-# print(sObj.query(0, 5, 0, 0, len(listVal) - 1))
-# sObj.update(0, 2, 1, 0, 0, len(listVal) - 1)
-# sObj.display()
-# print(sObj.query(0, 2, 0, 0, len(listVal) - 1))
-# sObj.update(1, 3, 1, 0, 0, len(listVal) -1)
-# sObj.display()
-# print(sObj.query(3, 5, 0, 0, len(listVal) - 1))
-# sObj.update(3, 4, 1, 0, 0, len(listVal) -1)
-# sObj.display()
-# print(sObj.query(3, 5, 0, 0, len(listVal) - 1))
-# sObj.update(4, 4, 2, 0, 0, len(listVal) - 1)
-# sObj.display()
-# print(sObj.query(4, 5, 0, 0, len(listVal) - 1))
+### Test ###
+listVal = [1, 3, 5, 7, 9, 11]
+sObj = SegTree(listVal)
+print(sObj.query(0, 3, 0, 0, len(listVal) - 1))
+print(sObj.query(3, 5, 0, 0, len(listVal) - 1))
+print(sObj.query(2, 4, 0, 0, len(listVal) - 1))
+print(sObj.query(0, 5, 0, 0, len(listVal) - 1))
+
+sObj.update(0, 2, 1, 0, 0, len(listVal) - 1)
+sObj.display()
+print(sObj.query(0, 2, 0, 0, len(listVal) - 1))
+
+sObj.update(1, 3, 1, 0, 0, len(listVal) -1)
+sObj.display()
+print(sObj.query(3, 5, 0, 0, len(listVal) - 1))
+
+sObj.update(3, 4, 1, 0, 0, len(listVal) -1)
+sObj.display()
+print(sObj.query(3, 5, 0, 0, len(listVal) - 1))
+
+sObj.update(4, 4, 2, 0, 0, len(listVal) - 1)
+sObj.display()
+print(sObj.query(4, 5, 0, 0, len(listVal) - 1))
